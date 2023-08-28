@@ -1,0 +1,65 @@
+.cursive-text {
+    font-family: cursive;
+}
+
+.top-block {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 5%;
+    margin-bottom: 0px;
+
+    padding-left: 5%;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.shift-block {
+    margin-left: 15%;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.border-block {
+    border: 2px solid #3498db;
+}
+
+.main {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 1%;
+    padding-bottom: 5%;
+}
+
+.my-container {
+    display: flex;
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Align items vertically */
+    padding: 10px;
+  }
+
+  .form-item {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 1%;
+
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 1%;
+  }
+  .form-item-line {
+    margin-right: 5%;
+  }
