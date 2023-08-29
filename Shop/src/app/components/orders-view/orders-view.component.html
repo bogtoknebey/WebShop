@@ -5,7 +5,7 @@
     </div>
     <table class="table text-center table-bordered">
         <thead>
-            <tr class="text-white bg-primary">
+            <tr class="text-white bg-dark-blue">
                 <th scope="col">Order Number</th>
                 <th scope="col">Customer Name</th>
                 <th scope="col">Customer Address</th>
@@ -17,7 +17,7 @@
             <tr>
                 <th scope="row"><a class="link-opacity-100" href="#">{{ orderView.Id }}</a></th>
                 <td>{{orderView.CustomerName}}</td>
-                <td>{{orderView.CustomerAddress}}</td>
+                <td class="left-align">{{orderView.CustomerAddress}}</td>
                 <td>{{orderView.TotalCost | currency}}</td>
                 <td>{{orderView.Status}}</td>
             </tr>

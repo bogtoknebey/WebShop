@@ -14,6 +14,9 @@ import { AddProductOrderView } from './Views/AddProductOrderView';
   styleUrls: ['./orders-add.component.css']
 })
 export class OrdersAddComponent implements OnInit {
+  // Link
+  baseLink:string = 'https://localhost:7011/api';
+ 
   // Data
   productViews: ProductView[] = [];
   orderId:number = 0;
@@ -46,7 +49,7 @@ export class OrdersAddComponent implements OnInit {
   // Data settings
 
   setProducts(): void {
-    this.http.get('https://localhost:7011/api/products')
+    this.http.get(`${this.baseLink}/products`)
       .subscribe(
         (response: any) => {
           this.productViews = response;
@@ -66,7 +69,7 @@ export class OrdersAddComponent implements OnInit {
   }
 
   setOrderId(): void{
-    this.http.get('https://localhost:7011/api/orders/newid')
+    this.http.get(`${this.baseLink}/orders/newid`)
     .subscribe(
       (response: any) => {
         this.orderId = response;
@@ -78,7 +81,7 @@ export class OrdersAddComponent implements OnInit {
   }
 
   setCustomers(): void{
-    this.http.get('https://localhost:7011/api/customers')
+    this.http.get(`${this.baseLink}/customers`)
     .subscribe(
       (response: any) => {
         this.customers = response;
@@ -99,17 +102,18 @@ export class OrdersAddComponent implements OnInit {
   addOrder(): void {
     // validation checks
     this.isAllValid = true;
+    this.invalidMessage = "Please, ";
     if (!this.statusValid) {
       this.isAllValid = false;
-      this.invalidMessage += "Please, select status \n";
+      this.invalidMessage += "*select status ";
     }
     if (!this.customerValid) {
       this.isAllValid = false;
-      this.invalidMessage += "Please, select customer \n";
+      this.invalidMessage += "*select customer ";
     }
     if (this.productViews.length == 0) {
       this.isAllValid = false;
-      this.invalidMessage += "Add any products \n";
+      this.invalidMessage += "*add any products ";
     }
     if (!this.isAllValid)
       return;
@@ -127,7 +131,7 @@ export class OrdersAddComponent implements OnInit {
     )
 
     console.log(order);
-    this.http.post('https://localhost:7011/api/orders', order).subscribe( 
+    this.http.post(`${this.baseLink}/orders`, order).subscribe( 
       response => {
         console.log('Request successful:', response);
       },
@@ -135,8 +139,13 @@ export class OrdersAddComponent implements OnInit {
         console.error('Request error:', error);
       }
     );
-
-    this.switchToViewOrders();
+    
+    setTimeout(() => {
+      this.switchToViewOrders();
+    }, 500);
+    
+    
+    
   }
 
 

@@ -2,8 +2,8 @@
     <span class="text-primary h4">Add Order</span><br><br>
     <form>
         <p class="form-item h5">
-            Order number: <label class="form-item-line"> {{orderId}} </label> 
-            Order date: <label> {{date | date : 'dd/MM/yyyy'}} </label>
+            Order number: <label class="form-item-line shift-block-3"> {{orderId}} </label> 
+            Order date: <label class="shift-block-3"> {{date | date : 'dd/MM/yyyy'}} </label>
         </p>
         <p class="form-item h5">
             Customer: <select class="" required (change)="switchCustomer($event)">
@@ -32,7 +32,7 @@
         </div>
         <table class="table text-center table-bordered">
             <thead>
-                <tr class="text-white bg-primary">
+                <tr class="text-white bg-dark-blue">
                     <th scope="col">Product Id</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Product Category</th>
@@ -55,10 +55,10 @@
   
         <div class="container">
             <div class="row">
-                <div class="col-2">
+                <div class="col-2 h5">
                     Comment:
                 </div>
-                <div class="col-6">
+                <div class="col-10">
                     <textarea class="form-control" rows="3" [(ngModel)]="comment" name="comment"></textarea>
                 </div>
             </div>

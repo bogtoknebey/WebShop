@@ -38,8 +38,9 @@
     padding-bottom: 0px;
 }
 
+
 .border-block {
-    border: 2px solid #3498db;
+    border: 2px solid #0b1114;
 }
 
 .main {
@@ -75,5 +76,16 @@
 
 .form-item-line {
     margin-right: 5%;
+}
+
+.bg-dark-blue {
+    background-color: #2323C9;
+    
+}
+
+.left-align {
+    text-align: left;
+    margin-left: 2px;
+    padding-left: 2px;
 }
 

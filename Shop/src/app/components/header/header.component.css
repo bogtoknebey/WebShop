@@ -1,0 +1,16 @@
+.bg-color-light{
+    background-color: rgb(245, 241, 241);
+}
+
+.bg-color-middle{
+    background-color: rgb(184, 169, 169);
+}
+
+.bg-color-dark{
+    background-color: rgb(139, 134, 134);
+}
+
+.mid-button{
+    margin-left: 15px;
+    margin-right: 15px;
+}

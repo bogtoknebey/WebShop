@@ -11,6 +11,9 @@ import { OrderView } from './Views/OrderView';
 })
 
 export class OrdersViewComponent implements OnInit {
+  // Link
+  baseLink:string = 'https://localhost:7011/api';
+
   orderViews: OrderView[] = [];
 
   constructor(private http: HttpClient, private router: Router){
@@ -23,7 +26,7 @@ export class OrdersViewComponent implements OnInit {
 
 
   setOrders(): void {
-    this.http.get('https://localhost:7011/api/orders')
+    this.http.get(`${this.baseLink}/orders`)
       .subscribe(
         (response: any) => {
           this.orderViews = response;
