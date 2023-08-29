@@ -13,6 +13,10 @@ export class AddOrderView {
       this.Status = Status;
       this.Comment = Comment;
       this.ProductOrders = ProductOrders;
+
+      // empty data
+      this.Id = 0;
+      this.date = new Date();
     }
 }
   

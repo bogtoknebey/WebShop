@@ -1,5 +1,5 @@
 <div *ngIf="productViews">
-    <span class="text-primary h4">Orders</span><br><br>
+    <span class="text-primary h4">Add Order</span><br><br>
     <form>
         <p class="form-item h5">
             Order number: <label class="form-item-line"> {{orderId}} </label> 
@@ -59,11 +59,20 @@
                     Comment:
                 </div>
                 <div class="col-6">
-                    <textarea class="form-control" rows="3" [(ngModel)]="comment"></textarea>
+                    <textarea class="form-control" rows="3" [(ngModel)]="comment" name="comment"></textarea>
                 </div>
             </div>
         </div>
-      
+
+        <div class="container mt-4">
+            <div class="d-flex justify-content-end">
+                <div class="h4 text-danger" *ngIf="!isAllValid">
+                    {{invalidMessage}}
+                </div>
+            </div>
+        </div>
+
+
         <div class="container mt-4">
             <div class="d-flex justify-content-end">
                 <button type="submit" (click)="addOrder()" class="btn btn-secondary me-2">Save</button>

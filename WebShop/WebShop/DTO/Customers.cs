@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebShop.DTO.Interfaces;
-using WebShop.DTO.Views;
 using WebShop.Models;
+using WebShop.Views;
 
 namespace WebShop.DTO
 {

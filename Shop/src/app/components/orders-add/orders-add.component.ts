@@ -5,7 +5,6 @@ import { CustomerView } from './Views/CustomerView';
 import { ProductView } from './Views/ProductView';
 import { AddOrderView } from './Views/AddOrderView';
 import { AddProductOrderView } from './Views/AddProductOrderView';
-// import { AddProductOrderView } from './Views/AddProductOrderView';
 
 
 
@@ -28,10 +27,13 @@ export class OrdersAddComponent implements OnInit {
   // Validation data
   statusValid: boolean = false;
   customerValid: boolean = false;
+  isAllValid: boolean = true;
+  invalidMessage: string = "";
 
   constructor(private http: HttpClient, private router: Router){
     this.statusValid = false;
     this.customerValid = false;
+    this.isAllValid = true;
   }
 
   ngOnInit(): void {
@@ -48,11 +50,13 @@ export class OrdersAddComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.productViews = response;
+          console.log(this.productViews);
           
           // reduce quantity (for test product list) and then set total cost
           this.productViews.forEach(product => {
             product.Quantity = 2;
           });
+
           this.setTotalCost();
         },
         error => {
@@ -94,15 +98,21 @@ export class OrdersAddComponent implements OnInit {
 
   addOrder(): void {
     // validation checks
+    this.isAllValid = true;
     if (!this.statusValid) {
-      return;
+      this.isAllValid = false;
+      this.invalidMessage += "Please, select status \n";
     }
     if (!this.customerValid) {
-      return;
+      this.isAllValid = false;
+      this.invalidMessage += "Please, select customer \n";
     }
     if (this.productViews.length == 0) {
-      return;
+      this.isAllValid = false;
+      this.invalidMessage += "Add any products \n";
     }
+    if (!this.isAllValid)
+      return;
 
     // form order
     let productOrders: AddProductOrderView[] = [];
@@ -115,9 +125,18 @@ export class OrdersAddComponent implements OnInit {
       this.comment,
       productOrders
     )
-    
-    
 
+    console.log(order);
+    this.http.post('https://localhost:7011/api/orders', order).subscribe( 
+      response => {
+        console.log('Request successful:', response);
+      },
+      error => {
+        console.error('Request error:', error);
+      }
+    );
+
+    this.switchToViewOrders();
   }
 
 

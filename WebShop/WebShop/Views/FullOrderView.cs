@@ -1,6 +1,6 @@
 ﻿using WebShop.Models;
 
-namespace WebShop.DTO.Views
+namespace WebShop.Views
 {
     public class FullOrderView
     {

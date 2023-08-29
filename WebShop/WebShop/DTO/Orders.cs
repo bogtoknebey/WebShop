@@ -2,9 +2,10 @@
 using Newtonsoft.Json;
 using System.Linq;
 using WebShop.Models;
-using WebShop.DTO.Views;
 using System.Collections.Generic;
 using WebShop.DTO.Interfaces;
+using WebShop.Views;
+using WebShop.Views.Add;
 
 namespace WebShop.DTO
 {
@@ -84,6 +85,58 @@ namespace WebShop.DTO
         public int GetNewProductOrderId()
         {
             return db.ProductOrders.Max(o => o.Id) + 1;
+        }
+
+        public bool AddOrder(AddOrderView newOrderView)
+        {
+            // order add
+            Order order = new Order
+            {
+                CustomerId = newOrderView.CustomerId,
+                Status = newOrderView.Status,
+                Comment = newOrderView.Comment,
+                _Date = DateTime.Now.Date
+            };
+            db.Orders.Add(order);
+            db.SaveChanges();
+
+            // ProductOrders add
+            foreach (var productOrderView in newOrderView.ProductOrders)
+            {
+                ProductOrder productOrder = new ProductOrder
+                {
+                    OrderId = order.Id,
+                    ProductSizeId = productOrderView.ProductSizeId,
+                    Quantity = productOrderView.Quantity
+                };
+                db.ProductOrders.Add(productOrder);
+
+                // put request to ProductSize
+                CangeProductSizeQuantity(productOrder.ProductSizeId, productOrder.Quantity);
+            }
+
+            db.SaveChanges();
+            return true;
+        }
+
+        public bool CangeProductSizeQuantity(int id, int reduction)
+        {
+            if (!db.ProductSizes.Any(p => p.Id == id))
+                return false;
+
+            var existingProduct = db.ProductSizes.Find(id);
+
+            if (existingProduct == null)
+                return false;
+
+            int newQuantity = existingProduct.Quantity - reduction;
+            if (newQuantity < 0)
+                return false;
+
+            existingProduct.Quantity = newQuantity;
+
+            db.SaveChanges();
+            return true;
         }
     }
 }
