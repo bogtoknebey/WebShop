@@ -8,6 +8,6 @@
         public string Comment { get; set; }
         public DateTime _Date { get; set; }
         public Customer Customer { get; set; }
-        public List<ProductOrder> ProductOrders { get; set; }
+        //public List<ProductOrder> ProductOrders { get; set; }
     }
 }

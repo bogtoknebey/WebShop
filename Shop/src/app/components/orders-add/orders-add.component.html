@@ -1,0 +1,79 @@
+<div *ngIf="productViews">
+    <span class="text-primary h4">Orders</span><br><br>
+    <form>
+        <p class="form-item h5">
+            Order number: <label class="form-item-line"> {{orderId}} </label> 
+            Order date: <label> {{date | date : 'dd/MM/yyyy'}} </label>
+        </p>
+        <p class="form-item h5">
+            Customer: <select class="" required (change)="switchCustomer($event)">
+                <option disabled selected value> -- select -- </option>
+                <option *ngFor="let customer of customers" [value]="customer.Id">{{ customer.Name }}</option>
+            </select>
+            <span class="h3 text-danger shift-block-3" *ngIf="!customerValid">*</span>
+        </p>
+        <p class="form-item h5">
+            Status: <select class="" required (change)="switchStatus($event)">
+                <option disabled selected value> -- select -- </option> 
+                <option value="New">New</option>
+                <option value="Paid">Paid</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Closed">Closed</option>
+            </select>
+            <span class="h3 text-danger shift-block-3" *ngIf="!statusValid">*</span>
+        </p>
+        <p class="form-item h5">
+            Total cost: {{ totalCost | currency }}
+        </p>
+        <div class="my-container">
+            <span class="text-primary h4">Add Products:</span>
+            <button type="button" class="btn btn-secondary btn-sm">Add Products To Order</button>
+        </div>
+        <table class="table text-center table-bordered">
+            <thead>
+                <tr class="text-white bg-primary">
+                    <th scope="col">Product Id</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Category</th>
+                    <th scope="col">Product Size</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let productView of productViews">
+                <tr>
+                    <th scope="row"><a class="link-opacity-100" href="#">{{ productView.Id }}</a></th>
+                    <td>{{productView.Name}}</td>
+                    <td>{{productView.Category}}</td>
+                    <td>{{productView.Size}}</td>
+                    <td>{{productView.Quantity}}</td>
+                    <td>{{productView.Price}}</td>
+                </tr>
+            </tbody>
+        </table>
+  
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    Comment:
+                </div>
+                <div class="col-6">
+                    <textarea class="form-control" rows="3" [(ngModel)]="comment"></textarea>
+                </div>
+            </div>
+        </div>
+      
+        <div class="container mt-4">
+            <div class="d-flex justify-content-end">
+                <button type="submit" (click)="addOrder()" class="btn btn-secondary me-2">Save</button>
+                <button (click)="switchToViewOrders()" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div *ngIf="!productViews">
+    <p>Loading data...</p>
+</div>
+  
+

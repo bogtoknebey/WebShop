@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\US999\\source\\repos\\WebShop\\WebShop\\WebShop.csproj": {}
+    "C:\\Users\\US999\\Desktop\\HOST\\GitRepostiories\\WebShop\\WebShop\\WebShop\\WebShop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\US999\\source\\repos\\WebShop\\WebShop\\WebShop.csproj": {
+    "C:\\Users\\US999\\Desktop\\HOST\\GitRepostiories\\WebShop\\WebShop\\WebShop\\WebShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\US999\\source\\repos\\WebShop\\WebShop\\WebShop.csproj",
+        "projectUniqueName": "C:\\Users\\US999\\Desktop\\HOST\\GitRepostiories\\WebShop\\WebShop\\WebShop\\WebShop.csproj",
         "projectName": "WebShop",
-        "projectPath": "C:\\Users\\US999\\source\\repos\\WebShop\\WebShop\\WebShop.csproj",
+        "projectPath": "C:\\Users\\US999\\Desktop\\HOST\\GitRepostiories\\WebShop\\WebShop\\WebShop\\WebShop.csproj",
         "packagesPath": "C:\\Users\\US999\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\US999\\source\\repos\\WebShop\\WebShop\\obj\\",
+        "outputPath": "C:\\Users\\US999\\Desktop\\HOST\\GitRepostiories\\WebShop\\WebShop\\WebShop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\US999\\AppData\\Roaming\\NuGet\\NuGet.Config",

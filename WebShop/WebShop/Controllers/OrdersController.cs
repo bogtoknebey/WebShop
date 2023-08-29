@@ -22,5 +22,11 @@ namespace WebShop.Controllers
         {
             return JsonConvert.SerializeObject(orders.GetAllViews());
         }
+
+        [HttpGet("newid")]
+        public string GetNewId()
+        {
+            return JsonConvert.SerializeObject(orders.GetNewId());
+        }
     }
 }

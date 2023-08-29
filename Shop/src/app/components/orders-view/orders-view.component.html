@@ -1,0 +1,29 @@
+<div *ngIf="orderViews">
+    <div class="my-container">
+        <span class="text-primary h4">Orders</span>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="switchToAddOrders()">New Order</button>
+    </div>
+    <table class="table text-center table-bordered">
+        <thead>
+            <tr class="text-white bg-primary">
+                <th scope="col">Order Number</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Customer Address</th>
+                <th scope="col">Total Cost</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let orderView of orderViews">
+            <tr>
+                <th scope="row"><a class="link-opacity-100" href="#">{{ orderView.Id }}</a></th>
+                <td>{{orderView.CustomerName}}</td>
+                <td>{{orderView.CustomerAddress}}</td>
+                <td>{{orderView.TotalCost | currency}}</td>
+                <td>{{orderView.Status}}</td>
+            </tr>
+        </tbody>
+</table>
+</div>
+<div *ngIf="!orderViews">
+    <p>Loading data...</p>
+</div>

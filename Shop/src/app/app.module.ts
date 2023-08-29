@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'; 
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { OrdersComponent } from './components/orders/orders.component';
-import { TableComponent } from './components/table/table.component';
+import { OrdersAddComponent } from './components/orders-add/orders-add.component';
+import { OrdersViewComponent } from './components/orders-view/orders-view.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    OrdersComponent,
-    TableComponent
+    OrdersAddComponent,
+    OrdersViewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule 
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

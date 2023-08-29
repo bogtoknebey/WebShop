@@ -41,6 +41,5 @@ namespace WebShop.DTO
 
             return allProductsView;
         }
-
     }
 }

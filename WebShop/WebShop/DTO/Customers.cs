@@ -17,17 +17,13 @@ namespace WebShop.DTO
         {
             List<Customer> allCustomers = db.Customers.
                 ToList();
-            foreach (var customer in allCustomers) 
-            {
-                customer.Orders = null;
-            }
             return allCustomers;
         }
 
         public List<CustomerView> GetAllViews()
         {
             List<Customer> allCustomers = GetAll();
-            List<CustomerView> allViews = GetAllViews();
+            List<CustomerView> allViews = new List<CustomerView>();
             foreach (var customer in allCustomers)
             {
                 CustomerView view = new CustomerView() 

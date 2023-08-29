@@ -16,10 +16,14 @@ namespace WebShop.DTO
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+        }
+
+
+        public void ResetDatabase()
+        {
             Database.EnsureDeleted();
             Database.EnsureCreated();
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

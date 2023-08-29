@@ -8,7 +8,7 @@ using WebShop.DTO.Interfaces;
 
 namespace WebShop.DTO
 {
-    public class Orders : IGetAll<Order>, IGetView<OrderView>
+    public class Orders : IGetAll<FullOrderView>, IGetView<OrderView>
     {
         private AppDbContext db;
         public Orders(AppDbContext db)
@@ -16,44 +16,49 @@ namespace WebShop.DTO
             this.db = db;
         }
 
-        public List<Order> GetAll() 
+        public List<FullOrderView> GetAll() 
         {
-            List<Order> allOrders = db.Orders
-                .Include(o => o.Customer)
-                .Include(o => o.ProductOrders)
-                .ThenInclude(po => po.ProductSize)
-                .ThenInclude(po => po.Product)
-                .ToList();
-
-            // Exclude circular references in child properties
+            List<Order> allOrders = db.Orders.
+                Include(o => o.Customer).
+                ToList();
+            List<FullOrderView> allViews = new List<FullOrderView>();
             foreach (var order in allOrders)
             {
-                order.Customer.Orders = null;
-                foreach (var productOrder in order.ProductOrders)
-                {
-                    productOrder.ProductSize.ProductOrders = null;
-                    productOrder.ProductSize.Product.ProductSizes = null;
+                List<ProductOrder> productOrders = db.ProductOrders.
+                    Where(po => po.OrderId == order.Id).
+                    Include(po => po.ProductSize).
+                    ThenInclude(po => po.Product).
+                    ToList();
+
+                // delete back ralation links
+                foreach (var productOrder in productOrders)
                     productOrder.Order = null;
-                }
+
+                FullOrderView view = new FullOrderView()
+                {
+                    Order = order,
+                    ProductOrders = productOrders
+                };
+                allViews.Add(view);
             }
 
-            return allOrders;
+            return allViews;
         }
 
         public List<OrderView> GetAllViews()
         {
-            List<Order> allOrders = GetAll();
+            List<FullOrderView> allFullOrders = GetAll();
             List<OrderView> allOrdersView = new List<OrderView>();
 
-            foreach (var order in allOrders)
+            foreach (var fullOrderView in allFullOrders)
             {
-                int id = order.Id;
-                string customerName = order.Customer.Name;
-                string customerAddress = order.Customer.Address;
-                string status = order.Status;
+                int id = fullOrderView.Order.Id;
+                string customerName = fullOrderView.Order.Customer.Name;
+                string customerAddress = fullOrderView.Order.Customer.Address;
+                string status = fullOrderView.Order.Status;
                 
                 double totalCost = 0;
-                foreach (var productOrder in order.ProductOrders)
+                foreach (var productOrder in fullOrderView.ProductOrders)
                 {
                     totalCost += productOrder.Quantity * productOrder.ProductSize.Price;
                 }
@@ -70,6 +75,15 @@ namespace WebShop.DTO
             }
 
             return allOrdersView;
+        }
+        public int GetNewId()
+        {
+            return db.Orders.Max(o => o.Id) + 1;
+        }
+
+        public int GetNewProductOrderId()
+        {
+            return db.ProductOrders.Max(o => o.Id) + 1;
         }
     }
 }
