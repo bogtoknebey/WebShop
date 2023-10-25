@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Gh616qNLtVDqt/lllOguOrePFLt05Dj9MverSvXEs2SgRa4G3pKKwoZlJ3+4u+5J98UH4XgNO8OOyCCYWqH4AA==",
+  "dgSpecHash": "3iLLjNmeEsav0Lv+aMf8wxMFEjPhibZQ7duZnkvlaVu7cRhG4Ph833etAmXvY2z04gtEW/sm8CvrsBFplWc6iA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\US999\\Desktop\\HOST\\GitRepostiories\\WebShop\\WebShop\\WebShop\\WebShop.csproj",
+  "projectFilePath": "D:\\Code\\GitRepostiories\\WebShop\\WebShop\\WebShop\\WebShop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\US999\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\US999\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
